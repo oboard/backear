@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">耳机返听</string>
+    <string name="large_text">
+        "\n\n不管你是学习外语口语练习、还是读书朗诵练习，耳机里面都可以实时听见自己的声音。\n\n"
+        "受限于Android系统音频通道延迟缺陷，大约有10ms的延迟\n\n"
+        "@一块小板子\n\n"
+    </string>
+    <string name="action_settings">Settings</string>
+</resources>

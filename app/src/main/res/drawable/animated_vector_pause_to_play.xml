@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+     android:drawable="@drawable/pause">
+    <target
+        android:animation="@animator/animator_pause_to_play"
+        android:name="pause"/>
+
+    <target
+        android:animation="@animator/animator_rotation_pause_to_play"
+        android:name="pausegroup"/>
+</animated-vector>

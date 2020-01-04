@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="50dp"
+    android:height="50dp"
+    android:viewportWidth="10.0"
+    android:viewportHeight="10.0">
+
+    <group
+        android:name="pausegroup"
+        android:pivotX="5"
+        android:pivotY="5">
+        <path
+            android:name="pause"
+            android:fillColor="#ffffff"
+            android:pathData="M 2.0,2.0 L 4.0,2.0 L 4.0,8.0 L 2.0,8.0 L 2.0,2.0 M 6.0,2.0 L 8.0,2.0 L 8.0,8.0 L 6.0,8.0 L 6.0,2.0"/>
+    </group>
+
+
+</vector>

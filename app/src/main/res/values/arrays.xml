@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="channels">
+        <item>单声道</item>
+        <item>立体声</item>
+    </string-array>
+</resources>
