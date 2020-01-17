@@ -12,7 +12,9 @@ import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -28,8 +30,9 @@ public class ScrollingActivity extends AppCompatActivity implements Runnable {
     AudioRecord audioRecord;
     AudioTrack audioTrack;
     Thread thread = null;
+    float increase = 1;
+    float stereoVolume = 0;
     private boolean isAlive = true;
-
 //    private Handler handler = new Handler() {
 //        @Override
 //        public void handleMessage(Message msg) {
@@ -81,14 +84,6 @@ public class ScrollingActivity extends AppCompatActivity implements Runnable {
 //            }
 //        });
 //    }
-    private void setOutSpeak() {
-        AudioManager audioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
-        //audioManager.setMicrophoneMute(false);
-        //audioManager.setSpeakerphoneOn(true);//使用扬声器外放，即使已经插入耳机
-        setVolumeControlStream(AudioManager.STREAM_MUSIC);//控制声音的大小
-        assert audioManager != null;
-        audioManager.setMode(AudioManager.MODE_NORMAL);
-    }
 
     @Override
     public void run() {
@@ -96,7 +91,7 @@ public class ScrollingActivity extends AppCompatActivity implements Runnable {
         //录音对象
         audioRecord = new AudioRecord(MediaRecorder.AudioSource.MIC, frequency, channelConfiguration, audioEncoding, recBufSize);
 
-        setOutSpeak();
+        //setOutSpeak();
         //声音播放对象
         audioTrack = new AudioTrack(AudioManager.STREAM_MUSIC, frequency, channelConfiguration, audioEncoding, plyBufSize, AudioTrack.MODE_STREAM);
         audioRecord.startRecording();
@@ -105,6 +100,9 @@ public class ScrollingActivity extends AppCompatActivity implements Runnable {
         audioTrack.play();
         while (isAlive) {
             int readLen = audioRecord.read(recBuf, 0, recBufSize);//获取录音缓存值
+            for (int i = 0; i < recBuf.length; i++) {
+                recBuf[i] = (byte) (recBuf[i] * increase);
+            }
             audioTrack.write(recBuf, 0, readLen);//将获取到录音数据向声音播放对象写入
             //计算声音分贝大小
             //long v = 0;
@@ -180,6 +178,47 @@ public class ScrollingActivity extends AppCompatActivity implements Runnable {
             }
         });
 
+
+        SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
+        final TextView textView = (TextView) findViewById(R.id.textView);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+
+                textView.setText(" " + i + "x");
+                increase = i;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        SeekBar seekBar2 = (SeekBar) findViewById(R.id.seekBar2);
+        final TextView textView2 = (TextView) findViewById(R.id.textView2);
+        seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                textView2.setText(" " + Float.valueOf(Integer.valueOf(i - 5).toString()) / 5);
+                stereoVolume = Float.valueOf(Integer.valueOf(i).toString()) / 10;
+                audioTrack.setStereoVolume(1 - stereoVolume, stereoVolume);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
         /*
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,5 +228,12 @@ public class ScrollingActivity extends AppCompatActivity implements Runnable {
             }
         });*/
     }
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
+
 
 }

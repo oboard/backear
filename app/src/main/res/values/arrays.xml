@@ -4,4 +4,11 @@
         <item>单声道</item>
         <item>立体声</item>
     </string-array>
+
+    <string-array name="channels2">
+        <item>MODE_NORMAL（正常模式）</item>
+        <item>MODE_RINGTONE（铃响模式）</item>
+        <item>MODE_IN_CALL（接通电话模式）</item>
+        <item>MODE_IN_COMMUNICATION（通话模式）</item>
+    </string-array>
 </resources>
