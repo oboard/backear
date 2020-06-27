@@ -6,9 +6,23 @@
     </string-array>
 
     <string-array name="channels2">
-        <item>MODE_NORMAL（正常模式）</item>
-        <item>MODE_RINGTONE（铃响模式）</item>
-        <item>MODE_IN_CALL（接通电话模式）</item>
-        <item>MODE_IN_COMMUNICATION（通话模式）</item>
+        <item>外放</item>
+        <item>蓝牙</item>
+        <item>耳机</item>
+        <item>听筒</item>
+    </string-array>
+
+    <string-array name="inputs">
+        <item>默认音频源</item>
+        <item>外设麦克风</item>
+        <item>上行声音（可能无法使用）</item>
+        <item>下行声音（可能无法使用）</item>
+        <item>语音拨出的语音与对方说话的声音（可能无法使用）</item>
+        <item>相机麦克风</item>
+        <item>语音识别</item>
+        <item>摄像头旁边的麦克风</item>
+        <item>系统内录/远程混音（可能无法使用）</item>
+        <item>未经处理的信号</item>
+        <item>回声消除</item>
     </string-array>
 </resources>

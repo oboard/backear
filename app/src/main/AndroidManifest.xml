@@ -5,6 +5,7 @@
 
     <!-- 打开MICROPHONE -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
     <application
         android:label="@string/app_name"
